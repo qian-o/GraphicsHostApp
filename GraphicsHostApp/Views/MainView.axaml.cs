@@ -97,6 +97,7 @@ public partial class MainView : UserControl
         GL gl = glRenderer.GetContext();
 
         gl.Viewport(0, 0, (uint)glRenderer.Bounds.Width, (uint)glRenderer.Bounds.Height);
+        gl.ClearColor(0.2f, 0.2f, 0.2f, 1.0f);
         gl.Clear((uint)GLEnum.ColorBufferBit | (uint)GLEnum.DepthBufferBit | (uint)GLEnum.StencilBufferBit);
 
         // Cube

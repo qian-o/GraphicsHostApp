@@ -16,9 +16,9 @@
 			<Grid>
 				<opengl:Renderer x:Name="glRenderer" />
 
-				<TextBlock Text="Graphics Api Blender" Margin="10,10,0,0" />
+				<TextBlock Foreground="White" Text="Graphics Api Blender" Margin="10,10,0,0" />
 
-				<Button Content="按钮" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+				<Button Content="Button" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 			</Grid>
 		</UniformGrid>
 
