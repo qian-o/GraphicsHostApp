@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Timers;
 using Avalonia.Controls;
 using Avalonia.OpenGL;
 using Avalonia.OpenGL.Controls;
@@ -12,7 +11,6 @@ namespace GraphicsHostApp.Graphics.OpenGL;
 public class Renderer : OpenGlControlBase, IGraphicsHost<GL>
 {
     private readonly Stopwatch _stopwatch = new();
-    private readonly Timer _updateTimer = new(16);
 
     private GL? context;
 
@@ -24,19 +22,11 @@ public class Renderer : OpenGlControlBase, IGraphicsHost<GL>
 
     public Renderer()
     {
-        _updateTimer.Elapsed += (sender, args) =>
-        {
-            if (context != null)
-            {
-                Dispatcher.UIThread.Invoke(() => RequestNextFrameRendering());
-            }
-        };
     }
 
     protected override void OnOpenGlInit(GlInterface gl)
     {
         _stopwatch.Start();
-        _updateTimer.Start();
 
         context ??= GL.GetApi(gl.GetProcAddress);
 
@@ -48,7 +38,6 @@ public class Renderer : OpenGlControlBase, IGraphicsHost<GL>
     protected override void OnOpenGlDeinit(GlInterface gl)
     {
         _stopwatch.Stop();
-        _updateTimer.Stop();
 
         OnUnload?.Invoke();
 
@@ -63,6 +52,8 @@ public class Renderer : OpenGlControlBase, IGraphicsHost<GL>
         OnUpdate?.Invoke(_stopwatch.Elapsed.TotalSeconds);
 
         OnRender?.Invoke(_stopwatch.Elapsed.TotalSeconds);
+
+        Dispatcher.UIThread.Post(RequestNextFrameRendering, DispatcherPriority.Render);
     }
 
     protected override void OnSizeChanged(SizeChangedEventArgs e)
