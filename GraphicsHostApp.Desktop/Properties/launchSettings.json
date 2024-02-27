@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GraphicsHostApp.Desktop": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

@@ -32,25 +32,11 @@ public unsafe class RenderPipeline : GraphicsResource
 
     public int GetAttribLocation(string name)
     {
-        int location = GL.GetAttribLocation(Handle, name);
-
-        if (location < 0)
-        {
-
-        }
-
         return GL.GetAttribLocation(Handle, name);
     }
 
     public int GetUniformLocation(string name)
     {
-        int location = GL.GetUniformLocation(Handle, name);
-
-        if (location < 0)
-        {
-
-        }
-
         return GL.GetUniformLocation(Handle, name);
     }
 
@@ -147,6 +133,8 @@ public unsafe class RenderPipeline : GraphicsResource
     public void Bind()
     {
         GL.UseProgram(Handle);
+
+        GL.Enable(GLEnum.DepthTest);
     }
 
     public void Unbind()

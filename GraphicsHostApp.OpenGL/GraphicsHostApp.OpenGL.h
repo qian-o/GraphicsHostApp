@@ -1,8 +1,19 @@
-﻿// GraphicsHostApp.OpenGL.h: 标准系统包含文件的包含文件
-// 或项目特定的包含文件。
-
-#pragma once
+﻿#pragma once
 
 #include <iostream>
+#include <glad/glad.h>
+#include <glm/glm.hpp>
 
-// TODO: 在此处引用程序需要的其他标头。
+#include "Graphics/Renderer.h"
+
+using namespace GraphicsHostApp;
+
+#define EXPORT extern "C" __declspec(dllexport)
+
+EXPORT void MakeContext(GLADloadproc getProcAddress, long* id);
+
+EXPORT void LoadScene(long id);
+
+EXPORT void UpdateScene(long id, double deltaSeconds, glm::vec2 size);
+
+EXPORT void DrawScene(long id, double deltaSeconds);

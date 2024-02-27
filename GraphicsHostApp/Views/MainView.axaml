@@ -13,10 +13,17 @@
 
 	<Grid>
 		<UniformGrid Rows="2" Columns="2">
-			<Grid>
-				<opengl:Renderer x:Name="glRenderer" />
+			<Grid Margin="4">
+				<opengl:Renderer x:Name="glRenderer1" />
 
-				<TextBlock Foreground="White" Text="Graphics Api Blender" Margin="10,10,0,0" />
+				<TextBlock Foreground="White" Text="Graphics Api Blender C#" Margin="10,10,0,0" />
+
+				<Button Content="Button" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			</Grid>
+			<Grid Margin="4">
+				<opengl:Renderer x:Name="glRenderer2" />
+
+				<TextBlock Foreground="White" Text="Graphics Api Blender C++" Margin="10,10,0,0" />
 
 				<Button Content="Button" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 			</Grid>
