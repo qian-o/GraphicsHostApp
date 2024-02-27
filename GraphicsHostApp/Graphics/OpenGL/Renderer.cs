@@ -58,6 +58,8 @@ public class Renderer : OpenGlControlBase, IGraphicsHost<GL>
 
     protected override void OnOpenGlRender(GlInterface gl, int fb)
     {
+        context?.Viewport(0, 0, (uint)Bounds.Width, (uint)Bounds.Height);
+
         OnUpdate?.Invoke(_stopwatch.Elapsed.TotalSeconds);
 
         OnRender?.Invoke(_stopwatch.Elapsed.TotalSeconds);
