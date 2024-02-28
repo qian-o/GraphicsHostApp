@@ -44,7 +44,6 @@ public class SimpleDrawingService : IDrawingService
 
     #region Meshes
     private Mesh[] cubeMeshes = null!;
-    private Mesh[] sphereMeshes = null!;
     #endregion
 
     private Matrix4X4<float> model = Matrix4X4<float>.Identity;
@@ -70,9 +69,6 @@ public class SimpleDrawingService : IDrawingService
 
         MeshFactory.GetCube(out Vertex[] vertices, out uint[] indices);
         cubeMeshes = [new(renderer, vertices, indices)];
-
-        MeshFactory.AssimpParsing(Path.Combine("Resources", "Models", "Sphere.glb"), out vertices, out indices);
-        sphereMeshes = [new(renderer, vertices, indices)];
     }
 
     public void Update(double deltaSeconds)
@@ -127,11 +123,11 @@ public class SimpleDrawingService : IDrawingService
             }
         }
 
-        // Sphere 1
+        // Cube 1
         {
             Matrix4X4<float> m = model * Matrix4X4.CreateTranslation(new Vector3D<float>(-10.0f, 4.0f, -16.0f));
 
-            foreach (Mesh mesh in sphereMeshes)
+            foreach (Mesh mesh in cubeMeshes)
             {
                 simplePipeline.Bind();
 
@@ -163,11 +159,11 @@ public class SimpleDrawingService : IDrawingService
             }
         }
 
-        // Sphere 2
+        // Cube 2
         {
             Matrix4X4<float> m = model * Matrix4X4.CreateTranslation(new Vector3D<float>(8.0f, 0.0f, -10.0f));
 
-            foreach (Mesh mesh in sphereMeshes)
+            foreach (Mesh mesh in cubeMeshes)
             {
                 simplePipeline.Bind();
 
