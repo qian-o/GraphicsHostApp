@@ -58,12 +58,12 @@ public class SimpleDrawingService : IDrawingService
             Fov = 45.0f
         };
 
-        using Shader vs1 = new(renderer, ShaderType.VertexShader, File.ReadAllText(Path.Combine("Resources", "Shaders", "Simple.vert")));
-        using Shader fs1 = new(renderer, ShaderType.FragmentShader, File.ReadAllText(Path.Combine("Resources", "Shaders", "Simple.frag")));
+        using Shader vs1 = new(renderer, ShaderType.VertexShader, File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Resources", "Shaders", "Simple.vert")));
+        using Shader fs1 = new(renderer, ShaderType.FragmentShader, File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Resources", "Shaders", "Simple.frag")));
         simplePipeline = new RenderPipeline(renderer, vs1, fs1);
 
-        using Shader vs2 = new(renderer, ShaderType.VertexShader, File.ReadAllText(Path.Combine("Resources", "Shaders", "SolidColor.vert")));
-        using Shader fs2 = new(renderer, ShaderType.FragmentShader, File.ReadAllText(Path.Combine("Resources", "Shaders", "SolidColor.frag")));
+        using Shader vs2 = new(renderer, ShaderType.VertexShader, File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Resources", "Shaders", "SolidColor.vert")));
+        using Shader fs2 = new(renderer, ShaderType.FragmentShader, File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Resources", "Shaders", "SolidColor.frag")));
 
         solidColorPipeline = new RenderPipeline(renderer, vs2, fs2);
 

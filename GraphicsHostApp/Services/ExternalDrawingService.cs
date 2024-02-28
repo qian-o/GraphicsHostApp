@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using GraphicsHostApp.Contracts.Services;
@@ -9,20 +10,40 @@ namespace GraphicsHostApp.Services;
 
 public unsafe partial class ExternalDrawingService : IDrawingService
 {
+    static ExternalDrawingService()
+    {
+        NativeLibrary.SetDllImportResolver(typeof(ExternalDrawingService).Assembly, (libraryName, assembly, searchPath) =>
+        {
+            if (libraryName == "GraphicsHostApp.OpenGL")
+            {
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    return NativeLibrary.Load(Path.Combine(AppContext.BaseDirectory, "Resources/Dependencies/GraphicsHostApp.OpenGL.dll"));
+                }
+                else
+                {
+                    return NativeLibrary.Load(Path.Combine(AppContext.BaseDirectory, "Resources/Dependencies/libGraphicsHostApp.OpenGL.so"));
+                }
+            }
+
+            return IntPtr.Zero;
+        });
+    }
+
     #region External Drawing Service
     public delegate void* GetProcAddress(string proc);
 
-    [LibraryImport("Resources/Dependencies/GraphicsHostApp.OpenGL")]
+    [LibraryImport("GraphicsHostApp.OpenGL")]
     [UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
     private static partial void MakeContext(GetProcAddress getProcAddress, out long id);
 
-    [LibraryImport("Resources/Dependencies/GraphicsHostApp.OpenGL")]
+    [LibraryImport("GraphicsHostApp.OpenGL")]
     private static partial void LoadScene(long id);
 
-    [LibraryImport("Resources/Dependencies/GraphicsHostApp.OpenGL")]
+    [LibraryImport("GraphicsHostApp.OpenGL")]
     private static partial void UpdateScene(long id, double deltaSeconds, Vector2D<float>* size);
 
-    [LibraryImport("Resources/Dependencies/GraphicsHostApp.OpenGL")]
+    [LibraryImport("GraphicsHostApp.OpenGL")]
     private static partial void DrawScene(long id, double deltaSeconds);
     #endregion
 
