@@ -19,8 +19,8 @@ public unsafe partial class ExternalDrawingService : IDrawingService
     [LibraryImport("Resources/Dependencies/GraphicsHostApp.OpenGL.dll")]
     private static partial void LoadScene(long id);
 
-    [DllImport("Resources/Dependencies/GraphicsHostApp.OpenGL.dll")]
-    private static extern void UpdateScene(long id, double deltaSeconds, [MarshalAs(UnmanagedType.Struct)] Vector2D<float> size);
+    [LibraryImport("Resources/Dependencies/GraphicsHostApp.OpenGL.dll")]
+    private static partial void UpdateScene(long id, double deltaSeconds, Vector2D<float>* size);
 
     [LibraryImport("Resources/Dependencies/GraphicsHostApp.OpenGL.dll")]
     private static partial void DrawScene(long id, double deltaSeconds);
@@ -51,7 +51,7 @@ public unsafe partial class ExternalDrawingService : IDrawingService
     {
         Vector2D<float> size = new((float)renderer.Bounds.Width, (float)renderer.Bounds.Height);
 
-        UpdateScene(rendererId, deltaSeconds, size);
+        UpdateScene(rendererId, deltaSeconds, &size);
     }
 
     public void Render(double deltaSeconds)

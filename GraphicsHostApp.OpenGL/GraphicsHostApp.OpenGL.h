@@ -14,6 +14,6 @@ EXPORT void MakeContext(GLADloadproc getProcAddress, long* id);
 
 EXPORT void LoadScene(long id);
 
-EXPORT void UpdateScene(long id, double deltaSeconds, glm::vec2 size);
+EXPORT void UpdateScene(long id, double deltaSeconds, const glm::vec2* size);
 
 EXPORT void DrawScene(long id, double deltaSeconds);
