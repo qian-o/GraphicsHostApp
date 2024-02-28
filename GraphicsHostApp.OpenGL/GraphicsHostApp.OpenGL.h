@@ -8,7 +8,11 @@
 
 using namespace GraphicsHostApp;
 
+#if WIN32
 #define EXPORT extern "C" __declspec(dllexport)
+#else
+#define EXPORT
+#endif
 
 EXPORT void MakeContext(GLADloadproc getProcAddress, long* id);
 

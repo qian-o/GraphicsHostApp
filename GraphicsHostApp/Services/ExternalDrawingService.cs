@@ -12,17 +12,17 @@ public unsafe partial class ExternalDrawingService : IDrawingService
     #region External Drawing Service
     public delegate void* GetProcAddress(string proc);
 
-    [LibraryImport("Resources/Dependencies/GraphicsHostApp.OpenGL.dll")]
+    [LibraryImport("Resources/Dependencies/GraphicsHostApp.OpenGL")]
     [UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
     private static partial void MakeContext(GetProcAddress getProcAddress, out long id);
 
-    [LibraryImport("Resources/Dependencies/GraphicsHostApp.OpenGL.dll")]
+    [LibraryImport("Resources/Dependencies/GraphicsHostApp.OpenGL")]
     private static partial void LoadScene(long id);
 
-    [LibraryImport("Resources/Dependencies/GraphicsHostApp.OpenGL.dll")]
+    [LibraryImport("Resources/Dependencies/GraphicsHostApp.OpenGL")]
     private static partial void UpdateScene(long id, double deltaSeconds, Vector2D<float>* size);
 
-    [LibraryImport("Resources/Dependencies/GraphicsHostApp.OpenGL.dll")]
+    [LibraryImport("Resources/Dependencies/GraphicsHostApp.OpenGL")]
     private static partial void DrawScene(long id, double deltaSeconds);
     #endregion
 
