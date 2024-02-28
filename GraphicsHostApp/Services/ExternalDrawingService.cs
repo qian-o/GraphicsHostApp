@@ -33,7 +33,16 @@ public unsafe partial class ExternalDrawingService : IDrawingService
     {
         renderer = (Renderer)args[0];
 
-        MakeContext((proc) => (void*)renderer.GetContext().Context.GetProcAddress(proc), out rendererId);
+        MakeContext((proc) =>
+        {
+            if (renderer.GetContext().Context.TryGetProcAddress(proc, out nint addr))
+            {
+                return (void*)addr;
+            }
+
+            return (void*)0;
+
+        }, out rendererId);
 
         LoadScene(rendererId);
     }
