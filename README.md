@@ -5,6 +5,7 @@ This is a simple application that hosts a graphics control. It is used to demons
 This example mainly explains how to use the OpenGL ES API in an Avalonia application, and how to perform OpenGL ES interop in a cross-language situation.
 ```
 C# uses the Silk.NET library to call the OpenGL ES API.
+
 C++ uses the Glad library to call the OpenGL ES API.
 ```
 Also explained how to use shaders in OpenGL ES, how to encapsulate the API in an object-oriented way, and how to enable MSAA anti-aliasing and use FBO for off-screen rendering.
