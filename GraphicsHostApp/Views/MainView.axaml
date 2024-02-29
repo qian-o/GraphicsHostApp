@@ -11,8 +11,18 @@
 		<vm:MainViewModel />
 	</Design.DataContext>
 
-	<Grid>
-		<UniformGrid Rows="2" Columns="2">
+	<DockPanel>
+		<Border HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,10,0,10" DockPanel.Dock="Bottom">
+			<StackPanel Orientation="Vertical">
+				<TextBlock>
+					<Run Text="MSAA Samples:" />
+					<Run Text="{Binding ElementName=glRenderer1, Path=Samples}" />
+				</TextBlock>
+				<Slider Width="200" Minimum="1" Maximum="16" Value="{Binding ElementName=glRenderer1, Path=Samples}" />
+			</StackPanel>
+		</Border>
+
+		<UniformGrid Rows="1" Columns="2">
 			<Grid Margin="4">
 				<opengl:Renderer x:Name="glRenderer1" />
 
@@ -28,15 +38,5 @@
 				<Button Content="Button" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 			</Grid>
 		</UniformGrid>
-
-		<Border HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10">
-			<StackPanel Orientation="Vertical">
-				<TextBlock>
-					<Run Text="MSAA Samples:" />
-					<Run Text="{Binding ElementName=glRenderer1, Path=Samples}" />
-				</TextBlock>
-				<Slider Width="200" Minimum="1" Maximum="16" Value="{Binding ElementName=glRenderer1, Path=Samples}" />
-			</StackPanel>
-		</Border>
-	</Grid>
+	</DockPanel>
 </UserControl>
