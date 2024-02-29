@@ -37,7 +37,7 @@ public class SimpleDrawingService : IDrawingService
     private Renderer renderer = null!;
     private Camera camera = null!;
 
-    #region Pipeline And Buffers
+    #region Pipelines
     private RenderPipeline simplePipeline = null!;
     private RenderPipeline solidColorPipeline = null!;
     #endregion

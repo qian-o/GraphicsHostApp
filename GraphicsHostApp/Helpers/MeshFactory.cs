@@ -60,4 +60,19 @@ public static unsafe class MeshFactory
 
         indices = vertices.Select((a, b) => (uint)b).ToArray();
     }
+
+    public static void GetCanvas(out Vertex[] vertices, out uint[] indices)
+    {
+        vertices =
+        [
+            new(new(-1.0f, 1.0f, 0.0f), new(0.0f, 0.0f, 0.0f), texCoord: new(0.0f, 1.0f)),
+            new(new(-1.0f, -1.0f, 0.0f), new(0.0f, 0.0f, 0.0f), texCoord: new(0.0f, 0.0f)),
+            new(new(1.0f, -1.0f, 0.0f), new(0.0f, 0.0f, 0.0f), texCoord: new(1.0f, 0.0f)),
+            new(new(1.0f, -1.0f, 0.0f), new(0.0f, 0.0f, 0.0f), texCoord: new(1.0f, 0.0f)),
+            new(new(1.0f, 1.0f, 0.0f), new(0.0f, 0.0f, 0.0f), texCoord: new(1.0f, 1.0f)),
+            new(new(-1.0f, 1.0f, 0.0f), new(0.0f, 0.0f, 0.0f), texCoord: new(0.0f, 1.0f))
+        ];
+
+        indices = vertices.Select((a, b) => (uint)b).ToArray();
+    }
 }

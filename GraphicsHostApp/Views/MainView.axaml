@@ -21,7 +21,7 @@
 				<Button Content="Button" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 			</Grid>
 			<Grid Margin="4">
-				<opengl:Renderer x:Name="glRenderer2" />
+				<opengl:Renderer x:Name="glRenderer2" Samples="{Binding ElementName=glRenderer1, Path=Samples}" />
 
 				<TextBlock Foreground="White" Text="Graphics Api Blender C++" Margin="10,10,0,0" />
 
@@ -29,5 +29,14 @@
 			</Grid>
 		</UniformGrid>
 
+		<Border HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10">
+			<StackPanel Orientation="Vertical">
+				<TextBlock>
+					<Run Text="MSAA Samples:" />
+					<Run Text="{Binding ElementName=glRenderer1, Path=Samples}" />
+				</TextBlock>
+				<Slider Width="200" Minimum="1" Maximum="16" Value="{Binding ElementName=glRenderer1, Path=Samples}" />
+			</StackPanel>
+		</Border>
 	</Grid>
 </UserControl>

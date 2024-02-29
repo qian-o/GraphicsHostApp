@@ -130,6 +130,14 @@ public unsafe class RenderPipeline : GraphicsResource
         }
     }
 
+    public void SetUniform(string name, uint index, Texture texture)
+    {
+        GL.ActiveTexture(GLEnum.Texture0 + (int)index);
+        GL.BindTexture(GLEnum.Texture2D, texture.Handle);
+
+        SetUniform(name, (int)index);
+    }
+
     public void Bind()
     {
         GL.UseProgram(Handle);

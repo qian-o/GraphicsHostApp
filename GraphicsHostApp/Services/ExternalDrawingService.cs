@@ -14,19 +14,13 @@ public unsafe partial class ExternalDrawingService : IDrawingService
     {
         NativeLibrary.SetDllImportResolver(typeof(ExternalDrawingService).Assembly, (libraryName, assembly, searchPath) =>
         {
-            if (libraryName == "GraphicsHostApp.OpenGL")
-            {
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                {
-                    return NativeLibrary.Load(Path.Combine(AppContext.BaseDirectory, "Resources/Dependencies/GraphicsHostApp.OpenGL.dll"));
-                }
-                else
-                {
-                    return NativeLibrary.Load(Path.Combine(AppContext.BaseDirectory, "Resources/Dependencies/libGraphicsHostApp.OpenGL.so"));
-                }
-            }
+            libraryName = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? $"{libraryName}.dll" : $"lib{libraryName}.so";
 
-            return IntPtr.Zero;
+            string libPath = Path.Combine(AppContext.BaseDirectory, "Resources", "Dependencies", libraryName);
+
+            NativeLibrary.TryLoad(libPath, out nint handle);
+
+            return 0;
         });
     }
 
