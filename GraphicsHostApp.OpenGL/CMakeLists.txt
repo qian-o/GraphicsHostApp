@@ -9,12 +9,12 @@ file(GLOB GRAPHICS_SOURCES "Graphics/*.cpp")
 source_group("Graphics/Header Files" FILES ${GRAPHICS_HEADERS})
 source_group("Graphics/Source Files" FILES ${GRAPHICS_SOURCES})
 
-# 创建名为GraphicsHostApp.OpenGL的动态链接库项目
-add_library(GraphicsHostApp.OpenGL SHARED ${GRAPHICS_SOURCES} ${GRAPHICS_HEADERS})
-
 # 设置接口源文件和头文件
 set(INTERFACE_SOURCES "GraphicsHostApp.OpenGL.cpp")
 set(INTERFACE_HEADERS "GraphicsHostApp.OpenGL.h")
+
+# 创建名为GraphicsHostApp.OpenGL的动态链接库项目
+add_library(GraphicsHostApp.OpenGL SHARED ${GRAPHICS_SOURCES} ${GRAPHICS_HEADERS} ${INTERFACE_SOURCES} ${INTERFACE_HEADERS})
 
 # 添加glad库的源文件
 add_library(glad glad/src/glad.c)
