@@ -20,7 +20,7 @@ public unsafe partial class ExternalDrawingService : IDrawingService
 
             NativeLibrary.TryLoad(libPath, out nint handle);
 
-            return 0;
+            return handle;
         });
     }
 
